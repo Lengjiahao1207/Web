@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{{ share.title }}{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/detail.css') }}">
+{% endblock %}
+
+{% block body %}
+  <div class="row" style="margin-top: 20px;">
+    <div class="col"></div>
+    <div class="col-8" style="background-color: #fff;padding: 20px;">
+      <h3 class="page-title">{{ share.title }}</h3>
+      <p class="share-info">
+        <span>作者：{{ share.author.username }}</span>
+        <span>时间：{{ share.create_time }}</span>
+      </p>
+      <hr>
+      <p class="share-content">{{ share.content }}</p>
+      <hr>
+      <h4 class="comment-group-title">评论({{ share.share_contents|length }}):</h4>
+      <form action="{{ url_for('share.comment',share_id=share.id) }}" method="post">
+        <div class="form-group">
+          <input type="text" placeholder="请填写评论" name="content" class="form-control">
+        </div>
+        {% for message in get_flashed_messages() %}
+          <div class="form-group">
+            <div class="text-danger">
+              <p class="font-weight-bolder text-green font-italic text-center">{{ message }}</p>
+            </div>
+          </div>
+        {% endfor %}
+        <div class="form-group" style="text-align: right;">
+          <button class="btn btn-primary">评论</button>
+        </div>
+      </form>
+      <ul class="comment-group">
+        {% for share_content in share.share_contents %}
+          <li>
+            <div class="user-info">
+              <img class="avatar" src="{{ url_for('static',filename='images/avatar.jpg') }}" alt="">
+              <span class="username">{{ share_content.author.username }}</span>
+              <span class="create-time">{{ share_content.create_time }}</span>
+            </div>
+            <p class="comment-content">{{ share_content.content }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col"></div>
+  </div>
+{% endblock %}

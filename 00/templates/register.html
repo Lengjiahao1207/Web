@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}智能共享柜-注册{% endblock %}
+
+{% block head %}
+  <script src = "{{ url_for('static',filename='jquery/jquery.3.6.min.js') }}"></script>
+  <script src = "{{ url_for('static',filename='js/register.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+  <div class="row mt-5">
+    <div class="col"></div>
+    <div class="col font-weight-bolder text-white">
+      <form method="POST" action="{{ url_for('user.register') }}">
+        <div class="form-group">
+          <label for="exampleInputEmail1">邮箱地址</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+          <small id="emailHelp" class="font-weight-bolder text-white">我们不会把你的邮件分享给任何人。</small>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">验证码</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="capture">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary font-weight-bolder text-white" type="button" id="capture_btn">获取验证码</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail11">用户名</label>
+          <input type="text" class="form-control" name="username">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">密码</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">确认密码</label>
+          <input type="password" class="form-control" name="password_confirm">
+        </div>
+
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">记住我</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">立即注册</button>
+      </form>
+    </div>
+    <div class="col"></div>
+  </div>
+{% endblock %}

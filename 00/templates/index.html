@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}智能共享柜-首页{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="row" style="margin-top: 20px;">
+  <div class="col"></div>
+  <div class="col-8">
+    <ul class="share-ul">
+
+      {% for share in shares %}
+      <li>
+        <div class="side-share">
+          <img class="side-share-avatar" src="{{ url_for('static',filename='images/avatar.jpg') }}" alt="">
+        </div>
+        <div class="share-main">
+          <div class="share-title"><a href="{{url_for('share.share_detail',share_id=share.id)}}">{{share.title}}</a></div>
+          <div class="share-content">{{ share.content }}</div>
+          <div class="share-detail">
+            <span class="share-author">{{ share.author.username }}</span>
+            <span class="share-time">{{ share.create_time }}</span>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+
+{##}
+{#    {% for feedback in feedbacks %}#}
+{#      <li>#}
+{#        <div class="side-feedback">#}
+{#          <img class="side-share-avatar" src="{{ url_for('static',filename='images/avatar.jpg') }}" alt="">#}
+{#        </div>#}
+{#        <div class="feedback-main">#}
+{#          <div class="feedback-title"><a href="{{url_for('feedback.share_detail',share_id=feedback.id)}}">{{feedback.title}}</a></div>#}
+{#          <div class="feedback-content">{{ feedback.content }}</div>#}
+{#          <div class="feedback-detail">#}
+{#            <span class="feedback-author">{{ feedback.author.username }}</span>#}
+{#            <span class="feedback-time">{{ feedback.create_time }}</span>#}
+{#          </div>#}
+{#        </div>#}
+{#      </li>#}
+{#      {% endfor %}#}
+
+    </ul>
+  </div>
+  <div class="col"></div>
+</div>
+{% endblock %}

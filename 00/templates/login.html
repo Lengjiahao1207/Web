@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}智能共享柜-登录{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+  <div class="row mt-5 active">
+    <div class="col"></div>
+    <div class="col">
+      <form action="{{ url_for("user.login") }}" method="POST">
+        <div class="form-group active">
+          <label for="exampleInputEmail1">
+            <p class="font-weight-bolder text-white">邮箱地址</p>
+          </label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+          <small id="emailHelp" class="form-text text-muted active">
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">
+            <p class="font-weight-bolder text-white">密码</p>
+          </label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">
+            <p class="font-weight-bolder text-white">记住我</p>
+          </label>
+        </div>
+
+        {% for message in get_flashed_messages() %}
+          <div class="form-group">
+            <div class="text-danger">
+              <p class="font-weight-bolder text-white font-italic text-center">{{message}}</p>
+            </div>
+          </div>
+        {% endfor %}
+
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <p class="font-weight-bolder text-white">立即登录</p>
+        </button>
+      </form>
+    </div>
+    <div class="col"></div>
+  </div>
+
+{% endblock %}
+
